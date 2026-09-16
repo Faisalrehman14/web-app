@@ -317,7 +317,7 @@
     if (!link) return;
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      showLoginError('Password recovery is not available in demo version.');
+      showLoginError('Please contact to your agent.');
     });
   }
 
