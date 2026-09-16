@@ -147,6 +147,38 @@
   }
 
   /* =========================
+     BACKGROUND MUSIC
+     ========================= */
+  let bgMusicStarted = false;
+
+  function startBgMusic() {
+    if (bgMusicStarted) return;
+    const music = document.getElementById('login-bg-music');
+    if (!music) return;
+    music.volume = 0.6;
+    const playPromise = music.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise
+        .then(() => { bgMusicStarted = true; })
+        .catch(() => {});
+    } else {
+      bgMusicStarted = true;
+    }
+  }
+
+  function initMusicFallback() {
+    const tryStart = () => {
+      startBgMusic();
+      if (bgMusicStarted) {
+        document.removeEventListener('pointerdown', tryStart);
+        document.removeEventListener('keydown', tryStart);
+      }
+    };
+    document.addEventListener('pointerdown', tryStart, { once: false });
+    document.addEventListener('keydown', tryStart, { once: false });
+  }
+
+  /* =========================
      SCREEN FLOW
      ========================= */
   function showLoadingScreen() {
@@ -162,6 +194,7 @@
   function showLoginScreen() {
     showScreen('login');
     initLoginPolish();
+    startBgMusic();
   }
 
   function initIntroVideo() {
@@ -402,6 +435,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     createIntroSparkles();
     startFireworksLoop();
+    initMusicFallback();
     setTimeout(initIntroVideo, 400);
   });
 
@@ -409,6 +443,7 @@
     setTimeout(() => {
       createIntroSparkles();
       startFireworksLoop();
+      initMusicFallback();
       initIntroVideo();
     }, 150);
   }
