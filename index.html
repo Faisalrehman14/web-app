@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1a0033" />
+    <title>Vegas Sweeps</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%234a0099' transform='rotate(45 50 50)' x='15' y='15' width='70' height='70'/%3E%3Ctext x='50' y='62' text-anchor='middle' fill='gold' font-family='serif' font-weight='900' font-size='24' font-style='italic'%3EVS%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <main class="app">
+      <div class="scene-frame">
+
+        <!-- =============================
+             INTRO SCREEN - VIDEO BACKGROUND
+             ============================= -->
+        <section id="intro-screen" class="screen screen-visible" aria-label="Vegas Sweeps intro">
+          <video
+            id="intro-video"
+            class="intro-video-bg"
+            muted
+            playsinline
+            autoplay
+            preload="auto"
+            poster="./assets/intro.png"
+          >
+            <source src="./Logo_animation_with_light_rays_20260916152040.mp4" type="video/mp4" />
+          </video>
+          <div class="intro-video-fallback"></div>
+          <div class="intro-sparkles" id="intro-sparkles"></div>
+          <div class="intro-vignette"></div>
+          <div class="intro-light-rays"></div>
+        </section>
+
+        <!-- =============================
+             LOADING SCREEN - VIDEO BACKGROUND
+             ============================= -->
+        <section id="loading-screen" class="screen" aria-label="Loading game resources">
+          <video
+            id="loading-video"
+            class="loading-video-bg"
+            muted
+            playsinline
+            autoplay
+            preload="auto"
+            poster="./assets/loading.png"
+          >
+            <source src="./need_video_20260916155454.mp4" type="video/mp4" />
+          </video>
+          <div class="loading-video-fallback"></div>
+          <div class="fireworks-container" id="fireworks-container"></div>
+
+          <div class="progress-wrapper">
+            <div id="progress-text" class="progress-percentage">0%</div>
+            <div class="progress-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading progress">
+              <div id="progress-fill" class="progress-bar-fill">
+                <div class="progress-bar-glow"></div>
+              </div>
+            </div>
+            <div class="loading-status-text" id="loading-status">Initializing game engine...</div>
+          </div>
+        </section>
+
+        <!-- =============================
+             LOGIN SCREEN - HIGHLY SOPHISTICATED
+             ============================= -->
+        <section id="login-screen" class="screen" aria-label="Sign in to Vegas Sweeps">
+          <div class="login-bg"></div>
+          <div class="login-ambient-glow"></div>
+          <div class="login-particles" id="login-particles"></div>
+          <div class="login-character-aura"></div>
+          <div class="login-lens-flares">
+            <div class="lens-flare lens-flare-1"></div>
+            <div class="lens-flare lens-flare-2"></div>
+            <div class="lens-flare lens-flare-3"></div>
+          </div>
+
+          <form id="login-form" class="login-overlay" novalidate>
+            <div class="login-card-3d" id="login-card-3d">
+              <div class="login-card-inner">
+
+                <div class="login-input-field login-field-account">
+                  <label class="sr-only" for="username">Account</label>
+                  <div class="input-frame">
+                    <div class="input-corner input-corner-tl"></div>
+                    <div class="input-corner input-corner-tr"></div>
+                    <div class="input-corner input-corner-bl"></div>
+                    <div class="input-corner input-corner-br"></div>
+                    <input
+                      id="username"
+                      name="username"
+                      class="field-input"
+                      type="text"
+                      placeholder=""
+                      autocomplete="username"
+                      required
+                    />
+                    <span class="field-label-float">Account</span>
+                  </div>
+                </div>
+
+                <div class="login-input-field login-field-password">
+                  <label class="sr-only" for="password">Password</label>
+                  <div class="input-frame">
+                    <div class="input-corner input-corner-tl"></div>
+                    <div class="input-corner input-corner-tr"></div>
+                    <div class="input-corner input-corner-bl"></div>
+                    <div class="input-corner input-corner-br"></div>
+                    <input
+                      id="password"
+                      name="password"
+                      class="field-input"
+                      type="password"
+                      placeholder=""
+                      autocomplete="current-password"
+                      required
+                    />
+                    <span class="field-label-float">Password</span>
+                  </div>
+                </div>
+
+                <div class="login-options-row">
+                  <label class="checkbox-hitbox" for="remember">
+                    <div id="custom-checkbox" class="custom-checkbox-visual checked">
+                      <svg class="check-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12L9 17L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <input id="remember" name="remember" type="checkbox" checked style="position:absolute;opacity:0;pointer-events:none;width:0;height:0" />
+                    <span class="checkbox-text-label">Remember Me</span>
+                  </label>
+
+                  <a href="#" class="forgot-hitbox" id="forgot-link">
+                    <span class="forgot-text-label">Forgot password?</span>
+                  </a>
+                </div>
+
+                <button type="submit" id="login-submit" class="login-button-hitbox" aria-label="Login">
+                  <span class="btn-shine-overlay"></span>
+                  <span class="login-btn-text-main">LOGIN</span>
+                  <span class="btn-ripple" id="btn-ripple"></span>
+                </button>
+
+              </div>
+            </div>
+
+            <div id="login-error" class="error-overlay" role="alert" aria-live="polite">
+              <svg class="error-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+              <span class="error-text-span"></span>
+            </div>
+          </form>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
